@@ -1,16 +1,30 @@
 import * as I from "./types";
+import styles from "./style.module.css";
 
-export function Post({ author = "", authorImage = "", content = "" }: I.Post) {
+export function Post({
+  author = "",
+  authorImage = "",
+  content = "",
+  role = "",
+  creadtedAt = "Publicado 1h atrás",
+}: I.Post) {
   return (
-    <article>
+    <article className={styles.post}>
       <header>
-        <img src={authorImage} alt={author} />
-        <div>
-          <strong>{author}</strong>
-          <span>4 min</span>
+        <div className={styles.author}>
+          <img className={styles.avatar} src={authorImage} alt={author} />
+          <div className={styles.authorInfo}>
+            <strong>{author}</strong>
+            <span>{role}</span>
+          </div>
         </div>
+        <time dateTime={creadtedAt}>{creadtedAt}</time>
       </header>
-      <p>{content}</p>
+      <div className={styles.content}>
+        <p>{content}</p>
+      </div>
     </article>
   );
 }
+
+// Create function observe if a certain class is in the element

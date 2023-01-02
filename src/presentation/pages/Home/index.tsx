@@ -9,8 +9,18 @@ export function Home() {
       <div className={styles.wrapper}>
         <Sidebar />
         <main>
-          <Post content="Lorem Ipsum" author="Juliano Alves" />
-          <Post content="Lorem Ipsum" author="Juliano Alves" />
+          <Post
+            authorImage="https://github.com/julianoalvescode.png"
+            content="Lorem Ipsum"
+            author="Juliano Alves"
+            role="Software Engineer"
+          />
+          <Post
+            authorImage="https://github.com/julianoalvescode.png"
+            content="Lorem Ipsum"
+            author="Juliano Alves"
+            role="Software Engineer"
+          />
         </main>
       </div>
     </>
