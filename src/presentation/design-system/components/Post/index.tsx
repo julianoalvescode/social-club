@@ -1,5 +1,6 @@
 import * as I from "./types";
 import styles from "./style.module.css";
+import { Comment } from "presentation/design-system/components";
 
 export function Post({
   author = "",
@@ -18,7 +19,9 @@ export function Post({
             <span>{role}</span>
           </div>
         </div>
-        <time dateTime={creadtedAt}>{creadtedAt}</time>
+        <time title={creadtedAt} dateTime={creadtedAt}>
+          {creadtedAt}
+        </time>
       </header>
       <div className={styles.content}>
         <p>{content}</p>
@@ -30,8 +33,11 @@ export function Post({
           <button type="submit">Publicar</button>
         </footer>
       </form>
+      <div className={styles.commentList}>
+        <Comment createdAt="Cerca de 1 hora atrás" />
+        <Comment createdAt="Cerca de 1 hora atrás" />
+        <Comment createdAt="Cerca de 1 hora atrás" />
+      </div>
     </article>
   );
 }
-
-// Create function observe if a certain class is in the element
