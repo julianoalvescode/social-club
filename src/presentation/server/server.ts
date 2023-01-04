@@ -24,8 +24,7 @@ export function makeServer({ environment = "test" } = {}) {
               name: "John Doe",
               role: "Admin",
             },
-            content:
-              "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed euismod, nisl nec ultricies ultricies, nunc nisl luctus nisl, eget aliquam nisl nisl eu nunc. Sed euismod, nisl nec ultricies ultricies, nunc nisl luctus nisl, eget aliquam nisl nisl eu nunc.",
+            content: "<h1>Olá</h1>",
             publishedAt: new Date("2022-08-27T08:24:37.642Z"),
           },
           {

@@ -1,7 +1,7 @@
 import * as I from "./types";
 import styles from "./style.module.css";
 import { Comment, Avatar } from "presentation/design-system/components";
-import { Chronos } from "shared";
+import { Chronos, PurifyHTML } from "shared";
 
 export function Post({
   author = "",
@@ -10,6 +10,11 @@ export function Post({
   role = "",
   creadtedAt = "Publicado 1h atrás",
 }: I.Post) {
+  const contentSantized = () => ({
+    __html: PurifyHTML.sanitize(content),
+  });
+  const formattedDate = Chronos.formatDistance(creadtedAt);
+
   return (
     <article className={styles.post}>
       <header>
@@ -21,11 +26,11 @@ export function Post({
           </div>
         </div>
         <time title={creadtedAt} dateTime={creadtedAt}>
-          {Chronos.formatDistance(creadtedAt)}
+          {formattedDate}
         </time>
       </header>
       <div className={styles.content}>
-        <p>{content}</p>
+        <div dangerouslySetInnerHTML={contentSantized()} />
       </div>
       <form className={styles.commentForm}>
         <strong>Deixe seu feedback</strong>
