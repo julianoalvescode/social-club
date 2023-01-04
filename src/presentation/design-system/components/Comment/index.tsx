@@ -3,30 +3,37 @@ import styles from "./style.module.css";
 import * as I from "./types";
 
 import { Avatar } from "presentation/design-system/components";
+import { Chronos, PurifyHTML } from "shared";
 
-export function Comment({ createdAt = "" }: I.CommentProps) {
+export function Comment({
+  createdAt = "",
+  author = "",
+  authorImage = "",
+  content = "",
+}: I.CommentProps) {
+  const sanitizedContent = () => ({
+    __html: PurifyHTML.sanitize(content),
+  });
+  const formattedDate = Chronos.formatDistance(createdAt);
+
   return (
     <>
       <div className={styles.comment}>
-        <Avatar
-          src="https://github.com/julianoalvescode.png"
-          alt=""
-          hasBorder={false}
-        />
+        <Avatar src={authorImage} alt="" hasBorder={false} />
         <div className={styles.commentBox}>
           <div className={styles.commentContent}>
             <header>
               <div className={styles.authorAndTime}>
-                <strong>Juliano Alves</strong>
+                <strong>{author}</strong>
                 <time title={createdAt} dateTime={createdAt}>
-                  {createdAt}
+                  {formattedDate}
                 </time>
               </div>
               <button title="Delete button">
                 <Trash size={24} />
               </button>
             </header>
-            <p>Muito bom, parabéns!</p>
+            <div dangerouslySetInnerHTML={sanitizedContent()} />
           </div>
           <footer>
             <button>

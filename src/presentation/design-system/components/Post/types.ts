@@ -1,3 +1,5 @@
+import { Comment } from "domain/models";
+
 export type Post = {
   title?: string;
   author?: string;
@@ -5,4 +7,5 @@ export type Post = {
   content?: string;
   role?: string;
   creadtedAt?: string;
+  comments: Comment[];
 };

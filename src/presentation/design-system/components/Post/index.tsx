@@ -9,6 +9,7 @@ export function Post({
   content = "",
   role = "",
   creadtedAt = "Publicado 1h atrás",
+  comments,
 }: I.Post) {
   const contentSantized = () => ({
     __html: PurifyHTML.sanitize(content),
@@ -40,9 +41,14 @@ export function Post({
         </footer>
       </form>
       <div className={styles.commentList}>
-        <Comment createdAt="Cerca de 1 hora atrás" />
-        <Comment createdAt="Cerca de 1 hora atrás" />
-        <Comment createdAt="Cerca de 1 hora atrás" />
+        {comments?.map((comment) => (
+          <Comment
+            author={comment?.author?.name}
+            authorImage={comment?.author?.avatarUrl}
+            createdAt={comment?.publishedAt}
+            key={comment?.id}
+          />
+        ))}
       </div>
     </article>
   );

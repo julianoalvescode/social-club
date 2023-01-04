@@ -21,6 +21,7 @@ export function Home() {
               content={post.content}
               role={post.author?.role}
               creadtedAt={post?.publishedAt}
+              comments={post.comments}
             />
           ))}
         </main>
