@@ -1,6 +1,7 @@
 import * as I from "./types";
 import styles from "./style.module.css";
 import { Comment, Avatar } from "presentation/design-system/components";
+import { Chronos } from "shared";
 
 export function Post({
   author = "",
@@ -20,7 +21,7 @@ export function Post({
           </div>
         </div>
         <time title={creadtedAt} dateTime={creadtedAt}>
-          {creadtedAt}
+          {Chronos.formatDistance(creadtedAt)}
         </time>
       </header>
       <div className={styles.content}>

@@ -1,26 +1,28 @@
 import { Header, Post, Sidebar } from "presentation/design-system/components/";
+import { usePosts } from "presentation/design-system/hooks/usePosts";
+import { useEffect } from "react";
 
 import styles from "./styles.module.css";
 
 export function Home() {
+  const { posts } = usePosts();
+
   return (
     <>
       <Header />
       <div className={styles.wrapper}>
         <Sidebar />
         <main>
-          <Post
-            authorImage="https://github.com/julianoalvescode.png"
-            content="Lorem Ipsum"
-            author="Juliano Alves"
-            role="Software Engineer"
-          />
-          <Post
-            authorImage="https://github.com/julianoalvescode.png"
-            content="Lorem Ipsum"
-            author="Juliano Alves"
-            role="Software Engineer"
-          />
+          {posts?.map((post) => (
+            <Post
+              key={post.id}
+              author={post.author?.name}
+              authorImage={post.author?.avatarUrl}
+              content={post.content}
+              role={post.author?.role}
+              creadtedAt={post?.publishedAt}
+            />
+          ))}
         </main>
       </div>
     </>
