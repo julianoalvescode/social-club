@@ -1,6 +1,6 @@
 import * as I from "./types";
 import styles from "./style.module.css";
-import { Comment } from "presentation/design-system/components";
+import { Comment, Avatar } from "presentation/design-system/components";
 
 export function Post({
   author = "",
@@ -13,7 +13,7 @@ export function Post({
     <article className={styles.post}>
       <header>
         <div className={styles.author}>
-          <img className={styles.avatar} src={authorImage} alt={author} />
+          <Avatar src={authorImage} alt={author} />
           <div className={styles.authorInfo}>
             <strong>{author}</strong>
             <span>{role}</span>
