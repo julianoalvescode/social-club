@@ -1,6 +1,5 @@
 import { Header, Post, Sidebar } from "presentation/design-system/components/";
-import { usePosts } from "presentation/design-system/hooks/usePosts";
-import { useEffect } from "react";
+import { usePosts } from "presentation/hooks";
 
 import styles from "./styles.module.css";
 

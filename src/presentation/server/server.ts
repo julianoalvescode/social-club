@@ -1,16 +1,11 @@
-import { createServer } from "miragejs";
-
-export const server = createServer({
-  routes() {
-    this.get("/api/reminders", () => ({
-      reminders: [],
-    }));
-  },
-});
+import { createServer, Model } from "miragejs";
 
 export function makeServer({ environment = "test" } = {}) {
   let server = createServer({
     environment,
+    models: {
+      posts: Model,
+    },
 
     routes() {
       this.namespace = "api";
@@ -89,6 +84,12 @@ export function makeServer({ environment = "test" } = {}) {
             ],
           },
         ];
+      });
+
+      this.post("/post", (schema, request) => {
+        let attrs = JSON.parse(request.requestBody);
+
+        return { comment: attrs };
       });
     },
   });

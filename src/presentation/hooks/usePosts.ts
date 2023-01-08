@@ -1,10 +1,14 @@
 // Create hook to fetch posts from API
 
-import { useQuery } from "react-query";
+import { useMutation, useQuery } from "react-query";
 import { HttpAPI } from "presentation/api";
 import { PostUseCase } from "domain/usecase";
 
 export const usePosts = () => {
+  const mutation = useMutation(async (post: Partial<PostUseCase.Model>) => {
+    return await HttpAPI.post("/post", post);
+  });
+
   const {
     data: posts,
     isLoading,
@@ -20,5 +24,7 @@ export const usePosts = () => {
     }
   );
 
-  return { posts, isLoading, error };
+  const sendPost = (post: Partial<PostUseCase.Model>) => mutation.mutate(post);
+
+  return { posts, isLoading, error, sendPost };
 };
